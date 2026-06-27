@@ -1,11 +1,13 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    APP_NAME: str = "Backend Devops Assignment API"
-    APP_VERSION: str = "1.0.0"
-    DEBUG: bool = True
+    APP_NAME: str
+    APP_VERSION: str
+    DEBUG: bool
 
-    class Config:
-        env_file = ".env"
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore"
+    )
 
 settings = Settings()
