@@ -12,3 +12,4 @@ def root():
         "message": settings.APP_NAME,
         "version": settings.APP_VERSION
     }
+
