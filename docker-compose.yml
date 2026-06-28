@@ -32,6 +32,21 @@ services:
       - "6379:6379"
     restart: unless-stopped
 
+  worker:
+    build: .
+    container_name: backend-worker
+    command: celery -A app.workers.celery_app.celery_app worker --loglevel=info
+
+    volumes:
+      - ./:/app
+
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
 
 volumes:
   postgres_data:
+
