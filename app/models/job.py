@@ -20,4 +20,10 @@ class Job(Base):
         back_populates="job",
         cascade="all, delete-orphan"
     )
+    summary = relationship(
+        "JobSummary",
+        back_populates="job",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
 
