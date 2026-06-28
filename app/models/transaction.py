@@ -23,5 +23,4 @@ class Transaction(Base):
     job = relationship(
         "Job",
         back_populates="transactions",
-        cascade="all, delete-orphan"
     )
