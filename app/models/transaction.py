@@ -1,5 +1,6 @@
 from sqlalchemy import Integer, String, Float, Boolean, Date, Column, ForeignKey
 from app.db.base import Base
+from sqlalchemy.orm import relationship
 
 class Transaction(Base):
     __tablename__ = "transactions"
@@ -19,3 +20,8 @@ class Transaction(Base):
     llm_category = Column(String(100), nullable=True)
     llm_raw_response = Column(String(1000), nullable=True)
     llm_failed = Column(Boolean, default=False, nullable=False)
+    job = relationship(
+        "Job",
+        back_populates="transactions",
+        cascade="all, delete-orphan"
+    )

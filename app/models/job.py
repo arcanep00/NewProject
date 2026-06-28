@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from app.db.base import Base
 from datetime import datetime
+from sqlalchemy.orm import relationship
 
 class Job(Base):
 
@@ -14,4 +15,9 @@ class Job(Base):
     error_message = Column(String(500), nullable=True)
     created_at = Column(DateTime, default=datetime.now, nullable=False)
     completed_at = Column(DateTime, nullable=True)
+    transactions = relationship(
+        "Transaction",
+        back_populates="job",
+        cascade="all, delete-orphan"
+    )
 
